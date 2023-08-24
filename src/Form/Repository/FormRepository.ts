@@ -13,20 +13,24 @@ export function getAllSecondItems() {
 export function getAllThirdItems() {
     return GetAllThirdDao();
 }
+
 export function addFirstItem(item: FirstType, allItems: FirstType[]) {
-  const updatedItems = [...allItems, item];
+  const exist= allItems
+  const updatedItems = [...exist, item];
   AddFirstDao(updatedItems);
   useFirstModuleStore.getState().setFirstItems(updatedItems);
 }
 
 export function addSecondItem(item: SecondType, allItems: SecondType[]) {
-  const updatedItems = [...allItems, item];
+  const exist= allItems
+  const updatedItems = [...exist, item];
   AddSecondDao(updatedItems);
   useSecondModuleStore.getState().setSecondItems(updatedItems);
 }
 
 export function addThirdItem(item: ThirdType, allItems: ThirdType[]) {
-  const updatedItems = [...allItems, item];
+  const exist= allItems
+  const updatedItems = [...exist, item];
   AddThirdDao(updatedItems);
   useThirdModuleStore.getState().setThirdItems(updatedItems);
 }

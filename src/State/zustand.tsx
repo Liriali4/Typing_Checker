@@ -52,7 +52,6 @@ export const useSecondModuleStore = create<SecondModuleStore>((set) => ({
       secondItems: items,
     })),
   getSecondItems: () => {
-    console.log("Veio buscar SecondModuleStore");
     set({
       secondItems: getAllSecondItems()
 
@@ -71,7 +70,6 @@ export const useThirdModuleStore = create<ThirdModuleStore>((set) => ({
       thirdItems: items,
     })),
   getThirdItems: () => {
-    console.log("Veio buscar ThirdModuleStore");
     set({
       thirdItems: getAllThirdItems()
     });

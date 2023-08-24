@@ -3,20 +3,40 @@ import { Text, Flex } from "@chakra-ui/react";
 import TypeCheckerButton from "../Components/TaskButton";
 import TypeCheckerInput from "../Components/TaskInput";
 import { FirstType, SecondType, ThirdType } from "../Types";
-import { addFirstItem, addSecondItem, addThirdItem } from "./Repository/FormRepository";
-import { useFirstModuleStore, useSecondModuleStore, useThirdModuleStore } from "../State/zustand";
+import {  addSecondItem, addThirdItem } from "./Repository/FormRepository";
+import {  useSecondModuleStore, useThirdModuleStore } from "../State/zustand";
+import {  MediatorAsync, MediatorReceiver, TypesEnum } from "../Typing_checker/receiver";
 
 export default function Form(): JSX.Element {
     const [firstData, setFirstData] = useState<FirstType>({ name: "", age: 0 });
     const [secondData, setSecondData] = useState<SecondType>({ color: "", Weight: 0 });
     const [thirdData, setThirdData] = useState<ThirdType>({ surname: "", height: 0 });
 
-    const firstModule = useFirstModuleStore(state => state.firstItems);
     const secondModule = useSecondModuleStore(state => state.secondItems);
     const thirdModule = useThirdModuleStore(state => state.thirdItems);
 
+    const handleButton1Click = async () => {
+        const objeto = {
+            name: firstData.name,
+            age: firstData.age,
+        };
+    
+        try {
+            const resposta = await MediatorAsync(TypesEnum.First, objeto); // Enviando o objeto para o primeiro módulo
+            console.log('Resposta do Primeiro Módulo:', resposta);
+    
+            setFirstData({
+                name: "",
+                age: 0,
+            });
+        } catch (error) {
+            console.error('Erro ao processar objeto:', error);
+        }
+    };
+    
 
-    const handleButton1Click = () => {
+
+    /*     const handleButton1Click = () => {
         console.log('AQUUI', firstModule)
 
         addFirstItem(firstData, firstModule)
@@ -25,7 +45,7 @@ export default function Form(): JSX.Element {
             age: 0,
         });
     };
-    
+ */
     const handleButton2Click = () => {
         addSecondItem(secondData, secondModule)
         setSecondData({
@@ -33,7 +53,7 @@ export default function Form(): JSX.Element {
             Weight: 0,
         });
     };
-    
+
     const handleButton3Click = () => {
         addThirdItem(thirdData, thirdModule)
         setThirdData({

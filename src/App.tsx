@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
-import TypingChecker from './Typing_checker';
 import Home from './screens/home';
 import { useFirstModuleStore, useSecondModuleStore, useThirdModuleStore } from './State/zustand';
 
@@ -18,7 +17,6 @@ export default function Application(): JSX.Element {
 
   return (
     <Box>
-      <TypingChecker/>
       <Home/>
     </Box>
   );
