@@ -5,7 +5,7 @@ import TypeCheckerInput from "../Components/TaskInput";
 import { FirstType, SecondType, ThirdType } from "../Types";
 import {  addSecondItem, addThirdItem } from "./Repository/FormRepository";
 import {  useSecondModuleStore, useThirdModuleStore } from "../State/zustand";
-import {  MediatorAsync, MediatorReceiver, TypesEnum } from "../Typing_checker/receiver";
+import {  MediatorAsync, TypesEnum } from "../Typing_checker/receiver";
 
 export default function Form(): JSX.Element {
     const [firstData, setFirstData] = useState<FirstType>({ name: "", age: 0 });
@@ -22,15 +22,15 @@ export default function Form(): JSX.Element {
         };
     
         try {
-            const resposta = await MediatorAsync(TypesEnum.First, objeto); // Enviando o objeto para o primeiro módulo
-            console.log('Resposta do Primeiro Módulo:', resposta);
+            const resposta = await MediatorAsync(TypesEnum.First, objeto); 
+            console.log('RECEBENDO RESPOSTAS A PARTIR DO FORMULÁRIO DE ENVIO,  RESPOSTA:', resposta, 'DADOS ENVIADOS', objeto);
     
             setFirstData({
                 name: "",
                 age: 0,
             });
         } catch (error) {
-            console.error('Erro ao processar objeto:', error);
+            console.error('ERRO AO PROCESSAR DADOS:', error);
         }
     };
     
@@ -73,7 +73,7 @@ export default function Form(): JSX.Element {
                 <Flex
                     flexDir={'column'}
                     justify={'space-around'}
-                    w={'350px'}
+                    w={'250px'}
                     h={'200px'}
                     mt={4}
                 >
@@ -85,7 +85,7 @@ export default function Form(): JSX.Element {
                 <Flex
                     flexDir={'column'}
                     justify={'space-around'}
-                    w={'350px'}
+                    w={'250px'}
                     h={'200px'}
                     mt={4}
                 >
@@ -97,7 +97,7 @@ export default function Form(): JSX.Element {
                 <Flex
                     flexDir={'column'}
                     justify={'space-around'}
-                    w={'350px'}
+                    w={'250px'}
                     h={'200px'}
                     mt={4}
                 >
