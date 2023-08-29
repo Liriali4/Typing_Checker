@@ -1,3 +1,5 @@
+import { UseGenericStore } from "../State/dispatcher";
+
 export enum TypesEnum {
     First = 'FirstType',
     Second = 'SecondType',
@@ -12,12 +14,20 @@ export async function MediatorAsync(obj: TypesEnum.First | TypesEnum.Second | Ty
 
 async function sendToModule(typeOfData: TypesEnum.First | TypesEnum.Second | TypesEnum.Third, data: any) {
 
+    const taskStore = UseGenericStore<any>()();
+    
     switch (typeOfData) {
         case TypesEnum.First:
+            taskStore.dispatch(data)
+            /* const firstModuleDispatch = useFirstModuleStore.getState().addFirstItem; */
             return await sendToFirstModule(data);
         case TypesEnum.Second:
+            taskStore.dispatch(data)
+          /*   const secondModuleDispatch = useSecondModuleStore.getState().addSecondItem; */
             return await sendToSecondModule(data);
         case TypesEnum.Third:
+            taskStore.dispatch(data)
+            /* const thirdModuleDispatch = useThirdModuleStore.getState().addThirdItem; */
             return await sendToThirdModule(data);
         default:
             throw new Error('Tipo de objeto não reconhecido.');
@@ -25,20 +35,6 @@ async function sendToModule(typeOfData: TypesEnum.First | TypesEnum.Second | Typ
 
 }
 
-/*
-
-export async function sendToFirstModule(data: any) {
-    // Implemente a lógica para processar os dados e gerar a mensagem   
-    const generatedResponse = generateResponse(data);
-    return generatedResponse;
-}
-
-function generateResponse(data: any): string {
-    // Implemente a lógica para gerar a resposta com base nos dados
-    return `Resposta gerada no Primeiro Módulo: ${JSON.stringify(data)}`;
-}
-
-*/
 
 export async function sendToFirstModule(data: any) {
     return new Promise<string>((resolve, reject) => {

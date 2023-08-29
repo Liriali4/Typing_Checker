@@ -1,21 +1,10 @@
 import { Box, Text, List, ListItem } from "@chakra-ui/react"
-import React, { useEffect } from "react"
+import React from "react"
 import { useFirstModuleStore } from "../../State/zustand";
-import { sendToFirstModule } from "../../Typing_checker/receiver";
 
 export default function FirstModule(): JSX.Element {
+
     const firstModule = useFirstModuleStore(state => state.firstItems);
-
-    useEffect(() => {
-            const inputData = 'Dados de exemplo';
-            try {
-                const response = sendToFirstModule(inputData);
-                console.log(response,'primeiro módulo');
-            } catch (error) {
-                console.error(error);
-            }
-    }, []);
-
 
     return (
         <Box>
