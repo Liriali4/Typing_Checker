@@ -7,8 +7,3 @@ export type SecondType= {
     color: string,
     Weight:number,
 }
-
-export type ThirdType= {
-    surname: string,
-    height:number,
-}

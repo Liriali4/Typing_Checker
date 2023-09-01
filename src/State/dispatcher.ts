@@ -5,7 +5,7 @@ type State<T> = {
   dispatch: (item: T) => void;
 };
 
-export const UseGenericStore = <T extends { id: number }>() =>
+export const UseGenericStore = <T>() =>
   create<State<T>>((set) => ({
     delivery: [],
     dispatch: (item) =>

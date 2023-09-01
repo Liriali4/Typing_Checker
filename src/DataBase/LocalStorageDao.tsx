@@ -3,7 +3,6 @@ const storage = window.localStorage;
 export enum StorageEnum {
 	First = 'first',
 	Second = 'second',
-	Third = 'third',
 }
 
 export function saveData(key: string, data: any) {

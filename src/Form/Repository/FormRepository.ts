@@ -1,6 +1,6 @@
-import { GetAllFirstDao, GetAllSecondDao, GetAllThirdDao, AddFirstDao, AddSecondDao, AddThirdDao } from '../Dao/FormDao';
-import { useFirstModuleStore, useSecondModuleStore, useThirdModuleStore } from '../../State/zustand';
-import { FirstType, SecondType, ThirdType } from '../../Types';
+import { GetAllFirstDao, GetAllSecondDao, AddFirstDao, AddSecondDao } from '../Dao/FormDao';
+import { useFirstModuleStore, useSecondModuleStore } from '../../State/zustand';
+import { FirstType, SecondType } from '../../Types';
 
 export function getAllFirstItems() {
     return GetAllFirstDao();
@@ -8,10 +8,6 @@ export function getAllFirstItems() {
 
 export function getAllSecondItems() {
     return GetAllSecondDao();
-}
-
-export function getAllThirdItems() {
-    return GetAllThirdDao();
 }
 
 export function addFirstItem(item: FirstType, allItems: FirstType[]) {
@@ -26,11 +22,4 @@ export function addSecondItem(item: SecondType, allItems: SecondType[]) {
   const updatedItems = [...exist, item];
   AddSecondDao(updatedItems);
   useSecondModuleStore.getState().setSecondItems(updatedItems);
-}
-
-export function addThirdItem(item: ThirdType, allItems: ThirdType[]) {
-  const exist= allItems
-  const updatedItems = [...exist, item];
-  AddThirdDao(updatedItems);
-  useThirdModuleStore.getState().setThirdItems(updatedItems);
 }
